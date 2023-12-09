@@ -1,0 +1,24 @@
+package com.ecom.exceptionHandler;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import jakarta.servlet.http.HttpServletRequest;
+
+public class GlobalExceptionHandler 
+{
+	 @ExceptionHandler(value = Exception.class)
+	 @ResponseBody
+	 
+	 private Map<String, Object> exceptionHandler(HttpServletRequest req, Exception e)
+	 {
+	        Map<String, Object> modelMap = new HashMap<String, Object>();
+	        modelMap.put("success", false);
+	        modelMap.put("errMsg", e.getMessage());
+	        return modelMap;
+	 }
+
+}
